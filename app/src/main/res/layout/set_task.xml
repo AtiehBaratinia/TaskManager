@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="30dp"
+    android:background="@color/smoothBlue"
+
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/calendar"
+        android:src="@drawable/calendar"
+        android:layout_centerHorizontal="true"
+        />
+    <Spinner
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@drawable/text_task_background"
+        android:id="@+id/type_of_task"
+        android:layout_below="@+id/calendar"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        />
+    <Spinner
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/period"
+        android:layout_below="@id/type_of_task"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/text_task_background"
+        />
+    <Spinner
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/reminder"
+        android:background="@drawable/text_task_background"
+        android:layout_toRightOf="@+id/period"
+        android:layout_marginLeft="49dp"
+        android:layout_below="@+id/type_of_task"
+        android:layout_marginTop="20dp"
+        />
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/title"
+        android:hint=" title"
+        android:background="@drawable/text_task_background"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/period"
+        android:paddingLeft="15dp"
+        />
+    <TextView android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:id="@+id/date"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_below="@+id/title"
+        android:background="@drawable/text_task_background"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_toRightOf="@+id/date"
+        android:layout_marginLeft="49dp"
+        android:id="@+id/time"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/text_task_background"
+        android:layout_marginTop="20dp"
+        />
+    <EditText
+        android:layout_height="70dp"
+        android:hint="@string/detail"
+        android:gravity="left"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/text_task_background"
+        android:layout_marginTop="20dp"
+        android:id="@+id/detail"
+        android:layout_below="@+id/date"
+        />
+
+    <Spinner
+        android:layout_height="wrap_content"
+        android:hint="@string/assignedto"
+        android:gravity="left"
+        android:layout_width="match_parent"
+        android:background="@drawable/text_task_background"
+        android:layout_marginTop="20dp"
+        android:id="@+id/asignedTo"
+        android:layout_below="@+id/detail"
+        />
+    <Button
+        android:id="@+id/saveTask"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/asignedTo"
+        android:background="@drawable/button_background"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/saveTaskButton"
+        />
+
+
+</RelativeLayout>

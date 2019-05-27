@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:id="@+id/swipe"
+    app:leftEdgeSwipeOffset="0dp"
+    app:rightEdgeSwipeOffset="0dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/bottom_wraper"
+        android:layout_width="240dp"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/Edit"
+            android:layout_width="1dp"
+            android:layout_height="140dp"
+            android:layout_weight="1"
+            android:background="#0076a5"
+            android:gravity="center"
+            android:src="@drawable/edit"
+            android:textColor="#fff"/>
+
+        <ImageView
+            android:id="@+id/Delete"
+            android:layout_width="1dp"
+            android:layout_height="140dp"
+            android:layout_weight="1"
+            android:background="#ff0000"
+            android:gravity="center"
+            android:src="@drawable/garbage"
+            android:textColor="#fff"/>
+        <ImageView
+            android:id="@+id/Cancel"
+            android:layout_width="1dp"
+            android:layout_height="140dp"
+            android:layout_weight="1"
+            android:background="#2cbb00"
+            android:gravity="center"
+            android:src="@drawable/close"
+            android:textColor="#fff" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:elevation="5dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/image_list"
+            android:layout_height="110dp"
+            android:layout_width="110dp"
+            android:padding="5dp"
+            />
+        <TextView
+            android:layout_height="40dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:id="@+id/title_list"
+            android:layout_toRightOf="@id/image_list"
+            android:textColor="@color/darkBlue"
+            />
+        <TextView
+            android:layout_height="30dp"
+            android:layout_width="match_parent"
+            android:id="@+id/assign_list"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_toRightOf="@id/image_list"
+            android:layout_below="@+id/title_list"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:id="@+id/type_task"
+            android:layout_below="@+id/assign_list"
+            android:gravity="right"
+            />
+        <TextView
+            android:layout_width="45dp"
+            android:padding="5dp"
+            android:textStyle="italic|bold"
+            android:layout_alignParentRight="true"
+            android:layout_height="30dp"
+            android:id="@+id/close"
+            android:text="close"
+            android:visibility="gone"
+            android:background="@drawable/close_text"
+            android:layout_below="@+id/type_task"
+            android:gravity="right"
+            />
+    </RelativeLayout>
+
+</com.daimajia.swipe.SwipeLayout>

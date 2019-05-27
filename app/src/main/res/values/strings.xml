@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">task manager</string>
+    <string name="Email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="welcome">Welcome!</string>
+    <string name="detail"> Detail</string>
+    <string name="saveTaskButton">save</string>
+    <string name="assignedto"> assigned to</string>
+    <string-array name="type_of_task">
+        <item>Type of task</item>
+        <item>Dinner</item>
+        <item>Exam</item>
+        <item>Meeting</item>
+        <item>Extra-class</item>
+        <item>Party</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="type_of_task_manager">
+        <item>All</item>
+        <item>Dinner</item>
+        <item>Exam</item>
+        <item>Meeting</item>
+        <item>Extra-class</item>
+        <item>Party</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="period">
+        <item>Period</item>
+        <item>a few seconds</item>
+        <item>a few minutes</item>
+        <item>a few hours</item>
+    </string-array>
+    <string-array name="reminder">
+        <item>Reminder</item>
+        <item>5 minutes sooner</item>
+        <item>10 minutes sooner</item>
+        <item>15 minutes sooner</item>
+        <item>1 hour sooner</item>
+        <item>2 hour sooner</item>
+        <item>1 day sooner</item>
+    </string-array>
+    <string-array name="assigned_to">
+        <item>Assigned to</item>
+        <item>Atieh</item>
+        <item>Amir</item>
+        <item>Soheila</item>
+        <item>Javad</item>
+    </string-array>
+    <string-array name="assigned_to_manager">
+        <item>All</item>
+        <item>Atieh</item>
+        <item>Amir</item>
+        <item>Soheila</item>
+        <item>Javad</item>
+    </string-array>
+    <string name="title_activity_manage_task">manageTask</string>
+    <string name="title_activity_navigation_drawer">navigationDrawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_temp">temp</string>
+    <string name="search"> search</string>
+    <string name="update_button">Update Task</string>
+    <string name="date">Date</string>
+    <string name="closed_date">Closed date</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="this_month">This Month</string>
+    <string name="open_activities">Open Activities</string>
+    <string name="close_activity">Close Activities</string>
+    <string name="late_activities">Late Activities</string>
+    <string name="this_season">This Season</string>
+    <string name="global">Global</string>
+    <string name="distribution_this_month">Distribution of late activities by user(this month)</string>
+    <string name="distribution_this_season">Distribution of late activities by user(this season)</string>
+    <string name="late_activities_this_season">Late activities of the season</string>
+</resources>

@@ -1,0 +1,2 @@
+example of parcelable which is complicated
+https://github.com/erangaeb/dev-notes/blob/master/android-parcelable/Sensor.java

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+<TextView
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:textStyle="bold"
+    android:textSize="20sp"
+    android:id="@+id/textPieChartSeason"
+    android:text="@string/distribution_this_season"
+    />
+    <include layout="@layout/text_color"
+        android:layout_below="@+id/textPieChartSeason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_color1"
+        />
+    <TextView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:text="There is no record to show by pie chart"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:id="@+id/dashboard_no_pie1"
+        android:layout_below="@id/text_color1"
+        />
+    <com.github.mikephil.charting.charts.PieChart
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/pieChartSeason"
+        android:layout_below="@+id/text_color1"/>
+</RelativeLayout>
