@@ -22,7 +22,9 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-
+/*
+    this activity is for setting a new task or edit one
+ */
 public class setTask extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
     Button saveTaskButton;
     String title, assign, stringTypeOfTask;
