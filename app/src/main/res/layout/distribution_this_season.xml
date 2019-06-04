@@ -30,6 +30,7 @@
     <com.github.mikephil.charting.charts.PieChart
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_margin="20dp"
         android:id="@+id/pieChartSeason"
         android:layout_below="@+id/text_color1"/>
 </RelativeLayout>

@@ -153,12 +153,12 @@ public class Dashboard extends AppCompatActivity
         number_open_activity_this_season.setText(String.valueOf(openSeason));
         //draw pieChart
         PieChart pieChartMonth = findViewById(R.id.pieChartMonth);
-        TextView tx1 = findViewById(R.id.dashboard_no_pie1);
-        graph(activityMonth, pieChartMonth, people, tx1);
+        TextView tx2 = findViewById(R.id.dashboard_no_pie2);
+        graph(activityMonth, pieChartMonth, people, tx2);
 
         PieChart pieChartSeason = findViewById(R.id.pieChartSeason);
-        TextView tx2 = findViewById(R.id.dashboard_no_pie1);
-        graph(activitySeaon, pieChartSeason, people, tx2);
+        TextView tx1 = findViewById(R.id.dashboard_no_pie1);
+        graph(activitySeaon, pieChartSeason, people, tx1);
 
 
     }

@@ -32,6 +32,7 @@
         />
     <com.github.mikephil.charting.charts.PieChart
         android:layout_height="match_parent"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:id="@+id/pieChartMonth"
         android:layout_below="@+id/text_color2"/>
