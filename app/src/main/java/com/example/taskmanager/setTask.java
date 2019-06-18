@@ -21,7 +21,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
 /*
     this activity is for setting a new task or edit one
  */
@@ -33,6 +37,12 @@ public class setTask extends AppCompatActivity implements AdapterView.OnItemSele
     Task task;
     TimePickerDialog timePickerDialog;
     TextView time, date;
+
+    Date c = Calendar.getInstance().getTime();
+    //System.out.println("Current time => " + c);
+    SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+    String today = df.format(c);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,8 +135,10 @@ public class setTask extends AppCompatActivity implements AdapterView.OnItemSele
 
         }
         else{
+
+
             time.setText("09:30");
-            date.setText("2019/5/21");
+            this.date.setText(today);
         }
 
 
@@ -202,12 +214,13 @@ public class setTask extends AppCompatActivity implements AdapterView.OnItemSele
                 timePickerDialog.show();
                 break;
             case R.id.date:
+                String[] day = today.split("/");
                 new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         date.setText(year + "/" +month+"/"+dayOfMonth);
                     }
-                }, 2019, 5,2).show();
+                }, Integer.parseInt(day[0]), Integer.parseInt(day[1]),Integer.parseInt(day[2])).show();
                 break;
             default:
                 Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();

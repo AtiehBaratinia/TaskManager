@@ -2,12 +2,12 @@ package com.example.taskmanager;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 
 public class CustomSpinner extends ArrayAdapter{
 
