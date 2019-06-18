@@ -77,4 +77,7 @@
     <string name="distribution_this_month">Distribution of late activities by user(this month)</string>
     <string name="distribution_this_season">Distribution of late activities by user(this season)</string>
     <string name="late_activities_this_season">Late activities of the season</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="create">Create</string>
 </resources>

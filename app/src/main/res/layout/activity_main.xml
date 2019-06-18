@@ -49,5 +49,16 @@
         android:gravity="center"
         android:background="@drawable/button_background"
         />
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="100dp"
+        android:text="Don't have an account? \nClick here"
+        android:textSize="20sp"
+        android:id="@+id/signIn"
+        android:background="@drawable/button_background"
+        android:gravity="center"
+        android:textStyle="bold"
+        />
 
 </LinearLayout>
