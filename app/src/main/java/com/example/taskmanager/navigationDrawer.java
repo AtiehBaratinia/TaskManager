@@ -3,6 +3,7 @@ package com.example.taskmanager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -73,12 +74,40 @@ public class navigationDrawer extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         setTitle("Menu");
 
-        //create Database
-        db = new DataBaseHelper(this,"Tasks",1);
 
         if (tasks == null) {
             tasks = new ArrayList();
         }
+
+        //create Database
+        db = new DataBaseHelper(this,"Tasks",1);
+
+        Cursor res = db.getAllData();
+
+        StringBuffer buffer = new StringBuffer();
+        while (res.moveToNext()){
+            String assign = res.getString(0);
+            String type = res.getString(1);
+            String title = res.getString(2);
+            String date = res.getString(3);
+            String time = res.getString(4);
+            String period = res.getString(5);
+            String reminder = res.getString(6);
+            String detail = res.getString(7);
+            Task task = new Task(assign, type, title);
+            task.setDate(date);
+            task.setDetail(detail);
+            task.setPeriod(period);
+            task.setReminder(reminder);
+            task.setTime(time);
+
+            tasks.add(task);
+
+
+        }
+
+
+
         setTitle("Tasks");
         //search view
 
@@ -260,14 +289,21 @@ public class navigationDrawer extends AppCompatActivity
                     //String messageReturn = dataIntent.getStringExtra("message_return");
                     //textView.setText(messageReturn);
 
-                    Toast.makeText(this, "done", Toast.LENGTH_SHORT).show();
+
                     Bundle bundle = dataIntent.getExtras();
                     if (bundle != null) {
                         Task task = (Task) bundle.getParcelable("task");
                         tasks.add(task);
                         orderTasks = orderListview(tasks);
                         listAdapter.filterList(orderTasks);
-//                        listAdapter.notifyDataSetChanged();
+                        boolean flag = db.insertData(task);
+                        if (flag){
+                            Toast.makeText(this, "done", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(this, "error",Toast.LENGTH_SHORT).show();
+                        }
+
+
 
                         recyclerView.setVisibility(View.VISIBLE);
                         nullTextView.setVisibility(View.GONE);
