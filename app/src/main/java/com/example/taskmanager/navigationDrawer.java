@@ -50,6 +50,7 @@ public class navigationDrawer extends AppCompatActivity
     RecyclerView recyclerView;
     SearchView searchView;
     String email;
+    DataBaseHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +59,6 @@ public class navigationDrawer extends AppCompatActivity
         Intent intent = getIntent();
         //tasks = getIntent().getParcelableArrayListExtra("task");
         email = intent.getStringExtra("email");
-//        TextView name = findViewById(R.id.name);
-//        TextView Email = findViewById(R.id.email);
-//        Email.setText(email);
-//        name.setText("Asghar");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -75,6 +72,9 @@ public class navigationDrawer extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         setTitle("Menu");
+
+        //create Database
+        db = new DataBaseHelper(this,"Tasks",1);
 
         if (tasks == null) {
             tasks = new ArrayList();
