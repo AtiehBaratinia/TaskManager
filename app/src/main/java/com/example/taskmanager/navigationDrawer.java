@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -79,32 +80,6 @@ public class navigationDrawer extends AppCompatActivity
             tasks = new ArrayList();
         }
 
-        //create Database
-        db = new DataBaseHelper(this,"Tasks",1);
-
-        Cursor res = db.getAllData();
-
-        StringBuffer buffer = new StringBuffer();
-        while (res.moveToNext()){
-            String assign = res.getString(0);
-            String type = res.getString(1);
-            String title = res.getString(2);
-            String date = res.getString(3);
-            String time = res.getString(4);
-            String period = res.getString(5);
-            String reminder = res.getString(6);
-            String detail = res.getString(7);
-            Task task = new Task(assign, type, title);
-            task.setDate(date);
-            task.setDetail(detail);
-            task.setPeriod(period);
-            task.setReminder(reminder);
-            task.setTime(time);
-
-            tasks.add(task);
-
-
-        }
 
 
 
@@ -113,44 +88,6 @@ public class navigationDrawer extends AppCompatActivity
 
         searchView = findViewById(R.id.search);
         searchView.setOnQueryTextListener(this);
-
-        //floating action button
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(this);
-
-        //set first tasks
-
-        orderTasks = tasks;
-        recyclerView = findViewById(R.id.my_recycler_view);
-
-
-        nullTextView = (TextView) findViewById(R.id.empty_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        listAdapter = new SwipeRecyclerViewAdapter(this, orderTasks);
-
-
-        if(tasks.isEmpty()){
-            recyclerView.setVisibility(View.GONE);
-            nullTextView.setVisibility(View.VISIBLE);
-        }else{
-            recyclerView.setVisibility(View.VISIBLE);
-            nullTextView.setVisibility(View.GONE);
-        }
-
-        ((SwipeRecyclerViewAdapter) listAdapter).setMode(Attributes.Mode.Single);
-
-        recyclerView.setAdapter(listAdapter);
-
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
 
         //set spinner
         typeOfTaskSpinner = (Spinner) findViewById(R.id.typeOfTaskManager);
@@ -168,6 +105,76 @@ public class navigationDrawer extends AppCompatActivity
         assignedToSpinner.setAdapter(assignedToAdapter);
         assignedToSpinner.setOnItemSelectedListener(this);
         assignedToSpinner.setPrompt("Assigned to");
+
+        //floating action button
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(this);
+
+        //create Database
+        db = new DataBaseHelper(this,"Tasks",1);
+
+
+
+        Cursor res = db.getAllData();
+        if (res.getCount() != 0) {
+            while (res.moveToNext()) {
+
+                String assign = res.getString(0);
+                String type = res.getString(1);
+                String title = res.getString(2);
+                String date = res.getString(3);
+                String time = res.getString(4);
+                String period = res.getString(5);
+                String reminder = res.getString(6);
+                String detail = res.getString(7);
+                Task task = new Task(assign, type, title);
+                task.setDate(date);
+                task.setDetail(detail);
+                task.setPeriod(period);
+                task.setReminder(reminder);
+                task.setTime(time);
+                tasks.add(task);
+                orderTasks = orderListview(tasks);
+            }
+        }
+        //set first tasks
+
+        orderTasks = tasks;
+        recyclerView = findViewById(R.id.my_recycler_view);
+
+
+        nullTextView = (TextView) findViewById(R.id.empty_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        listAdapter = new SwipeRecyclerViewAdapter(this, orderTasks);
+
+
+
+
+        ((SwipeRecyclerViewAdapter) listAdapter).setMode(Attributes.Mode.Single);
+
+        recyclerView.setAdapter(listAdapter);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+
+
+        if(tasks.isEmpty()){
+            recyclerView.setVisibility(View.GONE);
+            nullTextView.setVisibility(View.VISIBLE);
+        }else{
+            recyclerView.setVisibility(View.VISIBLE);
+            nullTextView.setVisibility(View.GONE);
+        }
+
+
     }
 
     @Override
@@ -188,6 +195,7 @@ public class navigationDrawer extends AppCompatActivity
                 Intent intent = new Intent(navigationDrawer.this, setTask.class);
                 startActivityForResult(intent, REQUEST_CODE_1);
                 break;
+
 
 
         }
@@ -251,6 +259,8 @@ public class navigationDrawer extends AppCompatActivity
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         orderTasks = orderListview(tasks);
         listAdapter.filterList(orderTasks);
+
+
     }
 
     @Override
@@ -296,6 +306,7 @@ public class navigationDrawer extends AppCompatActivity
                         tasks.add(task);
                         orderTasks = orderListview(tasks);
                         listAdapter.filterList(orderTasks);
+
                         boolean flag = db.insertData(task);
                         if (flag){
                             Toast.makeText(this, "done", Toast.LENGTH_SHORT).show();

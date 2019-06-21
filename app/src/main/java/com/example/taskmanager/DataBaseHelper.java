@@ -38,7 +38,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put("TIME", task.getTime());
         contentValues.put("PERIOD", task.getPeriod());
         contentValues.put("REMINDER", task.getReminder());
-        contentValues.put("DERAIL", task.getDetail());
+        contentValues.put("DETAIL", task.getDetail());
         long result = db.insert(databaseName, null, contentValues);
         if (result == -1)
             return false;
@@ -47,7 +47,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
     public Cursor getAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from" + databaseName, null);
+        Cursor res = db.rawQuery("select * from " + databaseName, null);
         return res;
     }
 }

@@ -200,7 +200,8 @@ public class setTask extends AppCompatActivity implements AdapterView.OnItemSele
 
                     setResult(RESULT_OK, intent);
 
-                    Toast.makeText(this, "save succeed", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "save succeed", Toast.LENGTH_SHORT).show();
+
                     finish();
                 }
                 break;

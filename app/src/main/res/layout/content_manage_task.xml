@@ -10,6 +10,7 @@
     tools:showIn="@layout/activity_manage_task">
     <include layout="@layout/search"
         android:layout_height="50dp"
+        android:id="@+id/search_layout"
         android:layout_width="match_parent" />
     <Spinner
         android:layout_height="45dp"
@@ -25,6 +26,7 @@
         android:layout_below="@id/assignedToManager"
         android:layout_marginTop="2dp"
         />
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
