@@ -112,7 +112,7 @@ public class navigationDrawer extends AppCompatActivity
 
         //create Database
         db = new DataBaseHelper(this,"Tasks",1);
-        // db.deleteAllData();
+         //db.deleteAllData();
 
 
 
@@ -148,7 +148,7 @@ public class navigationDrawer extends AppCompatActivity
 
         nullTextView = (TextView) findViewById(R.id.empty_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        listAdapter = new SwipeRecyclerViewAdapter(this, orderTasks);
+        listAdapter = new SwipeRecyclerViewAdapter(this, orderTasks,db);
 
 
 

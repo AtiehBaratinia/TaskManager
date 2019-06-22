@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,9 +27,11 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
     int image = R.drawable.task;
 
     private Task item;
-    public SwipeRecyclerViewAdapter(Context context, ArrayList<Task> objects) {
+    private DataBaseHelper db;
+    public SwipeRecyclerViewAdapter(Context context, ArrayList<Task> objects, DataBaseHelper db) {
         this.mContext = context;
         this.tasks = objects;
+        this.db = db;
     }
 
 
@@ -138,6 +141,7 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                db.deleteData(viewHolder.task.getId());
                                 mItemManger.removeShownLayouts(viewHolder.swipeLayout);
                                 tasks.remove(position);
                                 notifyItemRemoved(position);
