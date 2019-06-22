@@ -112,13 +112,14 @@ public class navigationDrawer extends AppCompatActivity
 
         //create Database
         db = new DataBaseHelper(this,"Tasks",1);
+        //db.deleteAllData();
 
 
 
         Cursor res = db.getAllData();
         if (res.getCount() != 0) {
             while (res.moveToNext()) {
-
+                //String id = res.getString(0);
                 String assign = res.getString(0);
                 String type = res.getString(1);
                 String title = res.getString(2);
@@ -133,8 +134,10 @@ public class navigationDrawer extends AppCompatActivity
                 task.setPeriod(period);
                 task.setReminder(reminder);
                 task.setTime(time);
+                //task.setId(id);
                 tasks.add(task);
                 orderTasks = orderListview(tasks);
+                //new AlertDialog.Builder(this).setMessage(id + "\n" + type + "\n" + assign);
             }
         }
         //set first tasks
@@ -303,19 +306,26 @@ public class navigationDrawer extends AppCompatActivity
                     Bundle bundle = dataIntent.getExtras();
                     if (bundle != null) {
                         Task task = (Task) bundle.getParcelable("task");
-                        tasks.add(task);
-                        orderTasks = orderListview(tasks);
-                        listAdapter.filterList(orderTasks);
+                        String edit = bundle.getString("edit");
+                        if (edit.equals("true")){
+                            db.updateData(task);
+                            orderTasks = orderListview(tasks);
+                            listAdapter.filterList(orderTasks);
 
-                        boolean flag = db.insertData(task);
-                        if (flag){
-                            Toast.makeText(this, "done", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(this, "error",Toast.LENGTH_SHORT).show();
+                        }else {
+                            tasks.add(task);
+                            orderTasks = orderListview(tasks);
+                            listAdapter.filterList(orderTasks);
+
+                            boolean flag = db.insertData(task);
+                            if (flag) {
+                                Toast.makeText(this, "done", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
+                            }
+
+
                         }
-
-
-
                         recyclerView.setVisibility(View.VISIBLE);
                         nullTextView.setVisibility(View.GONE);
                     }else

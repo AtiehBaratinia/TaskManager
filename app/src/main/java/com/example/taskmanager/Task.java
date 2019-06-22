@@ -12,6 +12,7 @@ public class Task implements Parcelable {
     private String period;
     private String reminder;
     private String detail;
+    private String id;
 
     public Task(String assign, String typeOfTask, String title){
         this.assign = assign;
@@ -41,6 +42,14 @@ public class Task implements Parcelable {
 
     public String getPeriod() {
         return period;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getReminder() {

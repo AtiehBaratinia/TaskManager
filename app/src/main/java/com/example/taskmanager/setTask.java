@@ -37,6 +37,7 @@ public class setTask extends AppCompatActivity implements AdapterView.OnItemSele
     Task task;
     TimePickerDialog timePickerDialog;
     TextView time, date;
+    boolean edit = false;
 
     Date c = Calendar.getInstance().getTime();
     //System.out.println("Current time => " + c);
@@ -90,7 +91,7 @@ public class setTask extends AppCompatActivity implements AdapterView.OnItemSele
 
 
         if (task != null){
-
+            edit = true;
             EditText detail = findViewById(R.id.detail);
             detail.setText(task.getDetail());
             TextView date = findViewById(R.id.date);
@@ -196,6 +197,7 @@ public class setTask extends AppCompatActivity implements AdapterView.OnItemSele
                     task.setPeriod(period.getSelectedItem().toString());
                     task.setReminder(reminder.getSelectedItem().toString());
                     intent.putExtra("task", task);
+                    intent.putExtra("edit", String.valueOf(edit));
 
 
                     setResult(RESULT_OK, intent);

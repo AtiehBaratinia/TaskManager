@@ -15,6 +15,7 @@ import java.util.Locale;
 public class EditTask extends AppCompatActivity implements View.OnClickListener {
     Button updateTask;
     Task task;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +63,8 @@ public class EditTask extends AppCompatActivity implements View.OnClickListener 
         if (yearTask == year && month == monthTask - 1 && day >= 28 && 2 >= dayTask) {
             close.setVisibility(View.VISIBLE);
         }
-        date.setText(task.getDate() +" at "+ task.getTime() + " (duration " + task.getPeriod() + " )");
+        String tem = task.getDate() +" at "+ task.getTime() + " (duration " + task.getPeriod() + " )";
+        date.setText(tem);
     }
 
     @Override

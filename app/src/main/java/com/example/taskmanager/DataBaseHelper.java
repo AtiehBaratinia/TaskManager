@@ -10,16 +10,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     String databaseName;
 
-    public DataBaseHelper(Context context,String name, int version) {
-        super(context, name, null, version);
-        databaseName = name;
+    public DataBaseHelper(Context context,String databaseName, int version) {
+        super(context, databaseName, null, version);
+        this.databaseName = databaseName;
 
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + databaseName +
-                "(ASSIGN TEXT, TYPE_OF_TASK TEXT, TITLE TEXT, DATE TEXT, TIME TEXT, PERIOD TEXT, REMINDER TEXT, DETAIL TEXT)");
+                "(ID INTEGER PRIMARY KEY AUTOINCREMENT,ASSIGN TEXT, TYPE_OF_TASK TEXT, TITLE TEXT, DATE TEXT, TIME TEXT, PERIOD TEXT, REMINDER TEXT, DETAIL TEXT)");
     }
 
     @Override
@@ -50,4 +50,27 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("select * from " + databaseName, null);
         return res;
     }
+    public void updateData(Task task){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ID",task.getId());
+        contentValues.put("ASSIGN",task.getAssign());
+        contentValues.put("TYPE_OF_TASK",task.getTypeOfTask());
+        contentValues.put("TITLE", task.getTitle());
+        contentValues.put("DATE", task.getDate());
+        contentValues.put("TIME", task.getTime());
+        contentValues.put("PERIOD", task.getPeriod());
+        contentValues.put("REMINDER", task.getReminder());
+        contentValues.put("DETAIL", task.getDetail());
+        db.update(databaseName, contentValues, "ID = ?", new String[]{task.getId()});
+    }
+    public Integer deleteData(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(databaseName,"ID = ?", new String[]{id});
+    }
+    public void deleteAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ databaseName);
+    }
+
 }
