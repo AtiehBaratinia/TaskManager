@@ -34,8 +34,7 @@
         android:layout_below="@+id/title_edit_task"
         android:layout_centerHorizontal="true"
         android:textSize="25sp"
-        android:paddingLeft="10dp"
-        android:text="type of task"
+        android:text="@string/type_of_task"
         android:background="@drawable/button_background"
         />
     <TextView

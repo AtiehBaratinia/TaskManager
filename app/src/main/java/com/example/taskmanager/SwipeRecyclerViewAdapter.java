@@ -1,7 +1,9 @@
 package com.example.taskmanager;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -127,7 +129,7 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
                                                public void onClick(View v) {
                                                    Intent intent = new Intent(mContext, EditTask.class);
                                                    intent.putExtra("Task", viewHolder.task);
-                                                   mContext.startActivity(intent);
+                                                   ((Activity)mContext).startActivityForResult(intent,navigationDrawer.REQUEST_CODE_1);
                                                    viewHolder.swipeLayout.close();
                                                }
                                            });
@@ -200,4 +202,5 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
             imageView = (ImageView) itemView.findViewById(R.id.image_list);
         }
     }
+
 }

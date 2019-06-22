@@ -45,7 +45,7 @@ public class navigationDrawer extends AppCompatActivity
 
     ArrayList <Task>tasks;
     ArrayList<Task> orderTasks;
-    private final static int REQUEST_CODE_1 = 1;
+    public final static int REQUEST_CODE_1 = 1, REQUEST_CODE_2 = 2;
     SwipeRecyclerViewAdapter listAdapter;
     TextView nullTextView;
     Spinner typeOfTaskSpinner, createdBySpinner, assignedToSpinner, taskStateSpinner;
@@ -112,29 +112,29 @@ public class navigationDrawer extends AppCompatActivity
 
         //create Database
         db = new DataBaseHelper(this,"Tasks",1);
-        //db.deleteAllData();
+        // db.deleteAllData();
 
 
 
         Cursor res = db.getAllData();
         if (res.getCount() != 0) {
             while (res.moveToNext()) {
-                //String id = res.getString(0);
-                String assign = res.getString(0);
-                String type = res.getString(1);
-                String title = res.getString(2);
-                String date = res.getString(3);
-                String time = res.getString(4);
-                String period = res.getString(5);
-                String reminder = res.getString(6);
-                String detail = res.getString(7);
+                String id = res.getString(0);
+                String assign = res.getString(1);
+                String type = res.getString(2);
+                String title = res.getString(3);
+                String date = res.getString(4);
+                String time = res.getString(5);
+                String period = res.getString(6);
+                String reminder = res.getString(7);
+                String detail = res.getString(8);
                 Task task = new Task(assign, type, title);
                 task.setDate(date);
                 task.setDetail(detail);
                 task.setPeriod(period);
                 task.setReminder(reminder);
                 task.setTime(time);
-                //task.setId(id);
+                task.setId(id);
                 tasks.add(task);
                 orderTasks = orderListview(tasks);
                 //new AlertDialog.Builder(this).setMessage(id + "\n" + type + "\n" + assign);
@@ -296,26 +296,36 @@ public class navigationDrawer extends AppCompatActivity
         {
             // This request code is set by startActivityForResult(intent, REQUEST_CODE_1) method.
             case REQUEST_CODE_1:
-
+                System.out.println("navi result code");
                 if(resultCode == RESULT_OK)
                 {
                     //String messageReturn = dataIntent.getStringExtra("message_return");
                     //textView.setText(messageReturn);
 
-
+                    System.out.println("navi result ok");
                     Bundle bundle = dataIntent.getExtras();
                     if (bundle != null) {
+                        System.out.println("2");
                         Task task = (Task) bundle.getParcelable("task");
                         String edit = bundle.getString("edit");
                         if (edit.equals("true")){
                             db.updateData(task);
+                            for (int i = 0; i < tasks.size(); i++) {
+                                if (task.getId().equals(tasks.get(i).getId())){
+                                    tasks.set(i,task);
+                                }
+                            }
+
                             orderTasks = orderListview(tasks);
                             listAdapter.filterList(orderTasks);
+                            System.out.println("id + " + task.getId() + " type + " + task.getTypeOfTask());
+
 
                         }else {
                             tasks.add(task);
                             orderTasks = orderListview(tasks);
                             listAdapter.filterList(orderTasks);
+
 
                             boolean flag = db.insertData(task);
                             if (flag) {
@@ -331,6 +341,8 @@ public class navigationDrawer extends AppCompatActivity
                     }else
                         Toast.makeText(this, "error",Toast.LENGTH_SHORT).show();
                 }
+                break;
+
         }
     }
     private ArrayList<Task> orderListview(ArrayList<Task> tasks){

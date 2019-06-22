@@ -19,7 +19,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + databaseName +
-                "(ID INTEGER PRIMARY KEY AUTOINCREMENT,ASSIGN TEXT, TYPE_OF_TASK TEXT, TITLE TEXT, DATE TEXT, TIME TEXT, PERIOD TEXT, REMINDER TEXT, DETAIL TEXT)");
+                " (ID INTEGER PRIMARY KEY AUTOINCREMENT, ASSIGN TEXT, TYPE_OF_TASK TEXT, TITLE TEXT, DATE TEXT, TIME TEXT, PERIOD TEXT, REMINDER TEXT, DETAIL TEXT)");
+        //
     }
 
     @Override
@@ -31,6 +32,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public boolean insertData(Task task){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+
         contentValues.put("ASSIGN",task.getAssign());
         contentValues.put("TYPE_OF_TASK",task.getTypeOfTask());
         contentValues.put("TITLE", task.getTitle());
@@ -39,11 +41,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put("PERIOD", task.getPeriod());
         contentValues.put("REMINDER", task.getReminder());
         contentValues.put("DETAIL", task.getDetail());
-        long result = db.insert(databaseName, null, contentValues);
-        if (result == -1)
+        long id = db.insert(databaseName, null, contentValues);
+
+        if (id == -1)
             return false;
-        else
+        else {
+            task.setId(String.valueOf(id));
             return true;
+        }
     }
     public Cursor getAllData(){
         SQLiteDatabase db = this.getWritableDatabase();

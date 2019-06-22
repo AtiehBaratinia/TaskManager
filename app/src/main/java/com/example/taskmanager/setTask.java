@@ -187,23 +187,33 @@ public class setTask extends AppCompatActivity implements AdapterView.OnItemSele
                 }
 
                 else{
-
-                    Intent intent = new Intent();
-                    Task task = new Task(assign, typeOfTask, title);
-                    task.setDate(date.getText().toString());
-                    task.setTime(time.getText().toString());
                     EditText detail = findViewById(R.id.detail);
-                    task.setDetail(detail.getText().toString());
-                    task.setPeriod(period.getSelectedItem().toString());
-                    task.setReminder(reminder.getSelectedItem().toString());
-                    intent.putExtra("task", task);
+                    Intent intent = new Intent();
+                    if (edit){
+                        task.setDate(date.getText().toString());
+                        task.setTime(time.getText().toString());
+                        task.setDetail(detail.getText().toString());
+                        task.setPeriod(period.getSelectedItem().toString());
+                        task.setReminder(reminder.getSelectedItem().toString());
+                        task.setTypeOfTask(typeOfTask);
+                        task.setTitle(title);
+                        task.setAssign(assign);
+                        intent.putExtra("task", task);
+                    }else {
+                        Task task = new Task(assign, typeOfTask, title);
+                        task.setDate(date.getText().toString());
+                        task.setTime(time.getText().toString());
+                        task.setDetail(detail.getText().toString());
+                        task.setPeriod(period.getSelectedItem().toString());
+                        task.setReminder(reminder.getSelectedItem().toString());
+                        intent.putExtra("task",task);
+                    }
+
+
                     intent.putExtra("edit", String.valueOf(edit));
-
-
+                    System.out.println("set task ok");
                     setResult(RESULT_OK, intent);
-
                     //Toast.makeText(this, "save succeed", Toast.LENGTH_SHORT).show();
-
                     finish();
                 }
                 break;

@@ -20,6 +20,7 @@ public class Task implements Parcelable {
         this.title = title;
     }
     public Task(Parcel in) {
+        this.id = in.readString();
         this.assign = in.readString();
         this.typeOfTask = in.readString();
         this.title = in.readString();
@@ -113,6 +114,7 @@ public class Task implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
         dest.writeString(assign);
         dest.writeString(typeOfTask);
         dest.writeString(title);
