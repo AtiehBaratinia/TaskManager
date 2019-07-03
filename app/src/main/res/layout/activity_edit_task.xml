@@ -35,6 +35,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="25sp"
         android:text="@string/type_of_task"
+        android:padding="10dp"
         android:background="@drawable/button_background"
         />
     <TextView

@@ -34,8 +34,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.daimajia.swipe.SwipeLayout;
-import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.daimajia.swipe.util.Attributes;
 
 import java.util.ArrayList;
@@ -45,10 +43,10 @@ public class navigationDrawer extends AppCompatActivity
 
     ArrayList <Task>tasks;
     ArrayList<Task> orderTasks;
-    public final static int REQUEST_CODE_1 = 1, REQUEST_CODE_2 = 2;
+    public final static int REQUEST_CODE_1 = 1;
     SwipeRecyclerViewAdapter listAdapter;
     TextView nullTextView;
-    Spinner typeOfTaskSpinner, createdBySpinner, assignedToSpinner, taskStateSpinner;
+    Spinner typeOfTaskSpinner,  assignedToSpinner;
     RecyclerView recyclerView;
     SearchView searchView;
     String email;
@@ -74,6 +72,7 @@ public class navigationDrawer extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         setTitle("Menu");
+
 
 
         if (tasks == null) {
@@ -140,8 +139,9 @@ public class navigationDrawer extends AppCompatActivity
                 //new AlertDialog.Builder(this).setMessage(id + "\n" + type + "\n" + assign);
             }
         }
-        //set first tasks
 
+
+        //set first tasks
         orderTasks = tasks;
         recyclerView = findViewById(R.id.my_recycler_view);
 
@@ -153,7 +153,7 @@ public class navigationDrawer extends AppCompatActivity
 
 
 
-        ((SwipeRecyclerViewAdapter) listAdapter).setMode(Attributes.Mode.Single);
+        listAdapter.setMode(Attributes.Mode.Single);
 
         recyclerView.setAdapter(listAdapter);
 
@@ -181,8 +181,14 @@ public class navigationDrawer extends AppCompatActivity
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -209,14 +215,17 @@ public class navigationDrawer extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()){
+            case R.id.about_creator:
+                new AlertDialog.Builder(this)
+                        .setMessage("creator: Atieh Baratinia\nemail: atiehBaratinia@gmail.com" +
+                                "\ntelegram: @AtiehBaratinia").show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
 
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.sandwich) {
-//            return true;
-//        }
+        }
 
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -246,7 +255,7 @@ public class navigationDrawer extends AppCompatActivity
                         }
                     }).setNegativeButton("No", null).show();
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

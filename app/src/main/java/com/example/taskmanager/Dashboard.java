@@ -220,26 +220,28 @@ public class Dashboard extends AppCompatActivity
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.dashboard, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()){
+            case R.id.about_creator:
+                new AlertDialog.Builder(this)
+                        .setMessage("creator: Atieh Baratinia\nemail: atiehBaratinia@gmail.com" +
+                                "\ntelegram: @AtiehBaratinia").show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -249,7 +251,7 @@ public class Dashboard extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_dashboard) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_password) {
 
         } else if (id == R.id.nav_profile) {
