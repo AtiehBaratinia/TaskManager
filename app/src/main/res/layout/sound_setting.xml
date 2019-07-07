@@ -21,6 +21,7 @@
         android:layout_below="@id/text_sound_setting"
         android:layout_centerHorizontal="true"
         android:id="@+id/layout_sound"
+        android:layout_margin="10dp"
         >
         <ImageView android:layout_height="wrap_content"
             android:layout_width="0dp"

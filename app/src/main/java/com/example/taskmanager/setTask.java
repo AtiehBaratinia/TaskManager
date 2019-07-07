@@ -31,7 +31,7 @@ import java.util.Date;
  */
 public class setTask extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
     Button saveTaskButton;
-    String title, assign, stringTypeOfTask;
+    String title, assign;
     ArrayAdapter<CharSequence> adapterTypeOfTask;
     Spinner typeOfTask;
     Task task;
@@ -49,6 +49,8 @@ public class setTask extends AppCompatActivity implements AdapterView.OnItemSele
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_task);
 
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         task = intent.getParcelableExtra("Task");
@@ -162,7 +164,13 @@ public class setTask extends AppCompatActivity implements AdapterView.OnItemSele
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
     @Override
@@ -170,7 +178,7 @@ public class setTask extends AppCompatActivity implements AdapterView.OnItemSele
         switch (v.getId()){
             case R.id.saveTask:
 
-                EditText editTextTitle = (EditText) findViewById(R.id.title);
+                EditText editTextTitle = findViewById(R.id.title);
                 title = editTextTitle.getText().toString();
                 Spinner spinnerAssign = findViewById(R.id.asignedTo);
                 assign = spinnerAssign.getSelectedItem().toString();
