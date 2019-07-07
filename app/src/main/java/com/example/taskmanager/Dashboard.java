@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -38,30 +39,30 @@ public class Dashboard extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         tasks = getIntent().getParcelableArrayListExtra("task");
 
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TextView number_close_activity_global = (TextView) findViewById(R.id.number_close_activity_global);
-        TextView number_close_activity_this_month = (TextView)findViewById(R.id.number_close_activity_this_month);
-        TextView number_close_activity_this_season = (TextView)findViewById(R.id.number_close_activity_this_season);
-        TextView number_late_activity_global = (TextView)findViewById(R.id.number_late_activity_global);
-        TextView number_late_activity_this_month = (TextView)findViewById(R.id.number_late_activity_this_month);
-        TextView number_late_activity_this_season = (TextView)findViewById(R.id.number_late_activity_this_season);
-        TextView number_open_activity_global = (TextView)findViewById(R.id.number_open_activity_global);
-        TextView number_open_activity_this_month = (TextView)findViewById(R.id.number_open_activity_this_month);
-        TextView number_open_activity_this_season = (TextView)findViewById(R.id.number_open_activity_this_season);
+        TextView number_close_activity_global = findViewById(R.id.number_close_activity_global);
+        TextView number_close_activity_this_month = findViewById(R.id.number_close_activity_this_month);
+        TextView number_close_activity_this_season = findViewById(R.id.number_close_activity_this_season);
+        TextView number_late_activity_global = findViewById(R.id.number_late_activity_global);
+        TextView number_late_activity_this_month = findViewById(R.id.number_late_activity_this_month);
+        TextView number_late_activity_this_season = findViewById(R.id.number_late_activity_this_season);
+        TextView number_open_activity_global = findViewById(R.id.number_open_activity_global);
+        TextView number_open_activity_this_month = findViewById(R.id.number_open_activity_this_month);
+        TextView number_open_activity_this_season = findViewById(R.id.number_open_activity_this_season);
 
         Date c = Calendar.getInstance().getTime();
         //System.out.println("Current time => " + c);
@@ -212,7 +213,7 @@ public class Dashboard extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -234,9 +235,10 @@ public class Dashboard extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()){
             case R.id.about_creator:
-                new AlertDialog.Builder(this)
-                        .setMessage("creator: Atieh Baratinia\nemail: atiehBaratinia@gmail.com" +
-                                "\ntelegram: @AtiehBaratinia").show();
+                navigationDrawer.aboutCreator(this);
+                return true;
+            case R.id.sound_setting:
+                 new SoundListener(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -270,7 +272,7 @@ public class Dashboard extends AppCompatActivity
                     }).setNegativeButton("No", null).show();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

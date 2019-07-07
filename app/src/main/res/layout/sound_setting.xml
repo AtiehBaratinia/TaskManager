@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <TextView android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="sound setting"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/text_sound_setting"
+        android:layout_margin="10dp"/>
+    <ImageView android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/text_sound_setting"
+        android:layout_width="wrap_content"
+        android:src="@drawable/subwoofer"
+        />
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/text_sound_setting"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/layout_sound"
+        >
+        <ImageView android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/pause_view"
+            android:src="@drawable/pause"/>
+        <ImageView android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/play_view"
+            android:src="@drawable/play"/>
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:id="@+id/volume_view"
+            android:src="@drawable/high_volume"/>
+    </LinearLayout>
+    <SeekBar
+        android:layout_height="20dp"
+        android:layout_width="match_parent"
+        android:layout_below="@id/layout_sound"
+        android:id="@+id/seekbar"
+        android:layout_margin="20dp"
+        />
+</RelativeLayout>
