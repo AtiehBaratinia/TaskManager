@@ -2,86 +2,85 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/layout_name"
+        android:orientation="horizontal">
     <TextView
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_below="@+id/textPieChartMonth"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:id="@+id/textSoheila"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_margin="10dp"
         android:text="Soheila"
         android:textSize="18sp"
         />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/textAtieh"
+            android:text="Atieh"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/textJavad"
+            android:text="Javad"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:id="@+id/textAmir"
+            android:layout_weight="1"
+            android:text="Amir"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/layout_name"
+        android:layout_height="wrap_content">
     <View
         android:layout_height="20dp"
-        android:layout_width="50dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:id="@+id/soheila_color"
-        android:layout_below="@id/textSoheila"
-        android:layout_marginLeft="22dp"
+        android:layout_margin="10dp"
         android:background="@drawable/soheila_color"
         />
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_below="@+id/textPieChartMonth"
-        android:id="@+id/textAtieh"
-        android:layout_toRightOf="@id/textSoheila"
-        android:text="Atieh"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:textSize="18sp"
-        />
+
     <View
         android:layout_height="20dp"
-        android:layout_width="50dp"
-        android:layout_below="@id/textAtieh"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="37dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
         android:id="@+id/atieh_color"
-        android:layout_toRightOf="@id/soheila_color"
         android:background="@drawable/atieh_color"
-        />
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_toRightOf="@id/textAtieh"
-        android:layout_marginLeft="20dp"
-        android:paddingLeft="20dp"
-        android:layout_below="@+id/textPieChartMonth"
-        android:id="@+id/textJavad"
-        android:text="Javad"
-        android:layout_margin="20dp"
-        android:textSize="18sp"
         />
 
     <View
         android:id="@+id/javad_color"
-        android:layout_width="50dp"
+        android:layout_width="0dp"
         android:layout_height="20dp"
-        android:layout_below="@id/textAtieh"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/atieh_color"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
         android:background="@drawable/javad_color" />
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_below="@+id/textPieChartMonth"
-        android:id="@+id/textAmir"
-        android:layout_toRightOf="@id/textJavad"
-        android:text="Amir"
-        android:layout_margin="20dp"
-        android:textSize="18sp"
-        />
+
     <View
         android:id="@+id/amir_color"
-        android:layout_width="50dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="20dp"
-        android:layout_below="@id/textAtieh"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/javad_color"
+        android:layout_margin="10dp"
         android:background="@drawable/amir_color" />
+    </LinearLayout>
 </RelativeLayout>

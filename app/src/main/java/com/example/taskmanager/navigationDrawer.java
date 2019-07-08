@@ -23,10 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.SearchView;
-import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -99,6 +96,7 @@ public class navigationDrawer extends AppCompatActivity
         //play sound
         mplayer = MediaPlayer.create(this, R.raw.gasoline);
         mplayer.start();
+        mplayer.setLooping(true);
 
         //set spinner
         typeOfTaskSpinner = findViewById(R.id.typeOfTaskManager);
