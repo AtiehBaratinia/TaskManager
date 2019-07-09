@@ -13,10 +13,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class SoundListener implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
-    final AudioManager audioManager;
-    SeekBar seekBar;
-    ImageView volumeButton;
-    public SoundListener(Activity activity){
+    private final AudioManager audioManager;
+    private SeekBar seekBar;
+    private ImageView volumeButton;
+    private int previousProgress = 2;
+    SoundListener(Activity activity){
         AlertDialog.Builder settingDialog = new AlertDialog.Builder(activity);
         View view = activity.getLayoutInflater().inflate(R.layout.sound_setting, null);
         audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
@@ -31,8 +32,8 @@ public class SoundListener implements View.OnClickListener, SeekBar.OnSeekBarCha
         volumeButton.setOnClickListener(this);
         pauseButton.setOnClickListener(this);
         settingDialog.setView(view);
-        AlertDialog dialog = settingDialog.create();
-        dialog.show();
+        settingDialog.setTitle("Sound Setting").setIcon(R.drawable.subwoofer)
+                .setNeutralButton("cancel", null).show();
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -56,13 +57,14 @@ public class SoundListener implements View.OnClickListener, SeekBar.OnSeekBarCha
                 break;
             case R.id.volume_view:
                 if (seekBar.getProgress() > 0){
+                    previousProgress = seekBar.getProgress();
                     volumeButton.setBackgroundColor(Color.GRAY);
                     seekBar.setProgress(0);
                     audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
                 }else{
                     volumeButton.setBackgroundColor(Color.WHITE);
-                    seekBar.setProgress(2);
-                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 2, 0);
+                    seekBar.setProgress(previousProgress);
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, previousProgress, 0);
                 }
                 break;
         }
@@ -75,7 +77,6 @@ public class SoundListener implements View.OnClickListener, SeekBar.OnSeekBarCha
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-
     }
 
     @Override

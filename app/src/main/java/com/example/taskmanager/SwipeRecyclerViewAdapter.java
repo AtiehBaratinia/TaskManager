@@ -3,8 +3,6 @@ package com.example.taskmanager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,11 +22,11 @@ import java.util.Date;
 public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecyclerViewAdapter.SimpleViewHolder> implements View.OnClickListener {
     private Context mContext;
     private ArrayList<Task> tasks;
-    int image = R.drawable.task;
+    private int image = R.drawable.task;
 
     private Task item;
     private DataBaseHelper db;
-    public SwipeRecyclerViewAdapter(Context context, ArrayList<Task> objects, DataBaseHelper db) {
+    SwipeRecyclerViewAdapter(Context context, ArrayList<Task> objects, DataBaseHelper db) {
         this.mContext = context;
         this.tasks = objects;
         this.db = db;
@@ -173,37 +171,37 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
         }
     }
 
-    public void filterList(ArrayList <Task> tasks){
+    void filterList(ArrayList<Task> tasks){
         this.tasks = tasks;
         notifyDataSetChanged();
     }
 
 
 
-    public static class SimpleViewHolder extends RecyclerView.ViewHolder{
-        public SwipeLayout swipeLayout;
-        public ImageView imageView;
-        public TextView AssignList;
-        public TextView TitleList;
-        public TextView TypeList;
-        public TextView close;
-        public ImageView Delete;
-        public ImageView Edit;
-        public ImageView Cancel;
-        public Task task;
-        public SimpleViewHolder(View itemView) {
+    static class SimpleViewHolder extends RecyclerView.ViewHolder{
+        SwipeLayout swipeLayout;
+        ImageView imageView;
+        TextView AssignList;
+        TextView TitleList;
+        TextView TypeList;
+        TextView close;
+        ImageView Delete;
+        ImageView Edit;
+        ImageView Cancel;
+        Task task;
+        SimpleViewHolder(View itemView) {
             super(itemView);
 
 
-            swipeLayout = (SwipeLayout) itemView.findViewById(R.id.swipe);
-            AssignList = (TextView) itemView.findViewById(R.id.assign_list);
-            TitleList = (TextView) itemView.findViewById(R.id.title_list);
-            TypeList = (TextView) itemView.findViewById(R.id.type_task);
-            close = (TextView) itemView.findViewById(R.id.close);
-            Delete = (ImageView) itemView.findViewById(R.id.Delete);
-            Edit = (ImageView) itemView.findViewById(R.id.Edit);
-            Cancel = (ImageView) itemView.findViewById(R.id.Cancel);
-            imageView = (ImageView) itemView.findViewById(R.id.image_list);
+            swipeLayout = itemView.findViewById(R.id.swipe);
+            AssignList = itemView.findViewById(R.id.assign_list);
+            TitleList = itemView.findViewById(R.id.title_list);
+            TypeList = itemView.findViewById(R.id.type_task);
+            close = itemView.findViewById(R.id.close);
+            Delete = itemView.findViewById(R.id.Delete);
+            Edit = itemView.findViewById(R.id.Edit);
+            Cancel = itemView.findViewById(R.id.Cancel);
+            imageView = itemView.findViewById(R.id.image_list);
         }
     }
 

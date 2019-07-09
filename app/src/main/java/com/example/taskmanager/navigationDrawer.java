@@ -71,7 +71,7 @@ public class navigationDrawer extends AppCompatActivity
 
 
         if (tasks == null) {
-            tasks = new ArrayList();
+            tasks = new ArrayList<>();
         }
 
 
@@ -94,7 +94,7 @@ public class navigationDrawer extends AppCompatActivity
 
 
         //play sound
-        mplayer = MediaPlayer.create(this, R.raw.gasoline);
+        mplayer = MediaPlayer.create(this, R.raw.strangers);
         mplayer.start();
         mplayer.setLooping(true);
 

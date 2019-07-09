@@ -57,6 +57,7 @@
         android:layout_width="match_parent"
         android:id="@+id/title"
         android:hint=" title"
+        android:inputType="textLongMessage"
         android:background="@drawable/text_task_background"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/layout1"

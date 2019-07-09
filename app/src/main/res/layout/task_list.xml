@@ -82,7 +82,7 @@
             android:layout_height="20dp"
             android:id="@+id/type_task"
             android:layout_below="@+id/assign_list"
-            android:gravity="right"
+            android:gravity="start"
             android:layout_toEndOf="@id/image_list"
             />
         <TextView
@@ -94,9 +94,9 @@
             android:id="@+id/close"
             android:text="close"
             android:visibility="gone"
-            android:background="@drawable/close_text"
+            android:background="@color/colorAccent"
             android:layout_below="@+id/type_task"
-            android:gravity="right"
+            android:gravity="end"
             />
     </RelativeLayout>
 
