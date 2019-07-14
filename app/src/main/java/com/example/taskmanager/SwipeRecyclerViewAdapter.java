@@ -22,7 +22,6 @@ import java.util.Date;
 public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecyclerViewAdapter.SimpleViewHolder> implements View.OnClickListener {
     private Context mContext;
     private ArrayList<Task> tasks;
-    private int image = R.drawable.task;
 
     private Task item;
     private DataBaseHelper db;
@@ -69,6 +68,7 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
         if (yearTask == year && month == monthTask - 1 && day >= 28 && 2 > dayTask) {
             viewHolder.close.setVisibility(View.VISIBLE);
         }
+        int image = R.drawable.task;
         viewHolder.imageView.setImageResource(image);
 
 
@@ -81,40 +81,6 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
         viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Right, viewHolder.swipeLayout.findViewById(R.id.bottom_wraper));
 
 
-
-//        viewHolder.swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
-//            @Override
-//            public void onStartOpen(SwipeLayout layout) {
-//
-//            }
-//
-//            @Override
-//            public void onOpen(SwipeLayout layout) {
-//
-//            }
-//
-//            @Override
-//            public void onStartClose(SwipeLayout layout) {
-//
-//            }
-//
-//            @Override
-//            public void onClose(SwipeLayout layout) {
-//
-//            }
-//
-//            @Override
-//            public void onUpdate(SwipeLayout layout, int leftOffset, int topOffset) {
-//
-//            }
-//
-//            @Override
-//            public void onHandRelease(SwipeLayout layout, float xvel, float yvel) {
-//
-//            }
-//        });
-
-        viewHolder.swipeLayout.getSurfaceView().setOnClickListener(this);
 
 
 
@@ -142,6 +108,7 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
                                 db.deleteData(viewHolder.task.getId());
                                 mItemManger.removeShownLayouts(viewHolder.swipeLayout);
                                 tasks.remove(position);
+                                navigationDrawer.tasks.remove(position);
                                 notifyItemRemoved(position);
                                 notifyItemRangeChanged(position, tasks.size());
                                 mItemManger.closeAllItems();

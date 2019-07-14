@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    String databaseName;
+    private String databaseName;
 
-    public DataBaseHelper(Context context,String databaseName, int version) {
+    DataBaseHelper(Context context, String databaseName, int version) {
         super(context, databaseName, null, version);
         this.databaseName = databaseName;
 
@@ -29,7 +29,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(Task task){
+    boolean insertData(Task task){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -50,12 +50,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-    public Cursor getAllData(){
+    Cursor getAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + databaseName, null);
         return res;
     }
-    public void updateData(Task task){
+    void updateData(Task task){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("ID",task.getId());
@@ -69,7 +69,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put("DETAIL", task.getDetail());
         db.update(databaseName, contentValues, "ID = ?", new String[]{task.getId()});
     }
-    public Integer deleteData(String id){
+    Integer deleteData(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(databaseName,"ID = ?", new String[]{id});
     }

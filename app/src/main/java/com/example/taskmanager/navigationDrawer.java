@@ -35,7 +35,7 @@ import java.util.ArrayList;
 public class navigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, AdapterView.OnItemSelectedListener, SearchView.OnQueryTextListener {
 
-    ArrayList <Task>tasks;
+    static ArrayList <Task>tasks;
     ArrayList<Task> orderTasks;
     public final static int REQUEST_CODE_1 = 1;
     SwipeRecyclerViewAdapter listAdapter;
@@ -333,7 +333,7 @@ public class navigationDrawer extends AppCompatActivity
 
                     Bundle bundle = dataIntent.getExtras();
                     if (bundle != null) {
-                        Task task = (Task) bundle.getParcelable("task");
+                        Task task = bundle.getParcelable("task");
                         String edit = bundle.getString("edit");
                         if (edit.equals("true")){
                             db.updateData(task);
@@ -373,7 +373,7 @@ public class navigationDrawer extends AppCompatActivity
         }
     }
     private ArrayList<Task> orderListview(ArrayList<Task> tasks){
-        ArrayList<Task> result = new ArrayList();
+        ArrayList<Task> result = new ArrayList<>();
         String typeSelected = typeOfTaskSpinner.getSelectedItem().toString();
         String assignSelected = assignedToSpinner.getSelectedItem().toString();
         for (int i = 0; i < tasks.size(); i++) {
@@ -388,7 +388,7 @@ public class navigationDrawer extends AppCompatActivity
         return result;
     }
     private ArrayList<Task> searchListview(ArrayList<Task> tasks, String searchString){
-        ArrayList result = new ArrayList();
+        ArrayList<Task> result = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).getTitle().toLowerCase().contains(searchString.toLowerCase())){
                 result.add(tasks.get(i));
